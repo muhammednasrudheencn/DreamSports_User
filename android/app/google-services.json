@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "648172421232",
+    "project_id": "dream-sports-5aeeb",
+    "storage_bucket": "dream-sports-5aeeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648172421232:android:05fe8def65c6910a4534b5",
+        "android_client_info": {
+          "package_name": "com.example.dream_sports"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648172421232-r5t6o5inmc3gc3e5to80766fv5f6hejv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7hUYYQgpRTRzLloS9L6I6jcDKRtwRZVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648172421232-r5t6o5inmc3gc3e5to80766fv5f6hejv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648172421232:android:0051f5a4efe26f904534b5",
+        "android_client_info": {
+          "package_name": "com.example.dream_sports_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648172421232-r5t6o5inmc3gc3e5to80766fv5f6hejv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7hUYYQgpRTRzLloS9L6I6jcDKRtwRZVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648172421232-r5t6o5inmc3gc3e5to80766fv5f6hejv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
