@@ -5,7 +5,8 @@ const homecolor = Color.fromARGB(255, 41, 192, 46);
 const whiteback = Colors.white;
 const blackback = Color.fromARGB(255, 0, 0, 0);
 
-const logo = 'assets/1691762418563.png';
+const logo =
+    'assets/Yellow_and_Blue_Simple_Football_Sport_Logo__3_-removebg-preview.png';
 
 const dreamtext = (GoogleFonts.play);
 

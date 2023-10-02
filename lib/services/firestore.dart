@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final auth = FirebaseAuth.instance;
-final storeauth = FirebaseFirestore.instance;
+final store = FirebaseFirestore.instance;
 addtofirestore({
   required String username,
   required String about,
@@ -42,5 +42,5 @@ userSet() async {
 }
 
 deleteuser() async {
-  await storeauth.collection('User').doc(auth.currentUser!.uid).delete();
+  await store.collection('User').doc(auth.currentUser!.uid).delete();
 }
