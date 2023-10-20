@@ -19,7 +19,7 @@ class DreamSports extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => SplashblocBloc()..add(InitialEvent()),
-        )
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'Play'),

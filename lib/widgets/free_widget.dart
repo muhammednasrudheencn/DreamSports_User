@@ -113,7 +113,10 @@ Widget fieldtext(String childtext) {
     alignment: Alignment.centerLeft,
     child: Text(childtext,
         style: const TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 15, letterSpacing: 1)),
+            color: blackback,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            letterSpacing: 1)),
   );
 }
 

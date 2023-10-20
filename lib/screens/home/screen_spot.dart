@@ -1,7 +1,7 @@
-import 'package:dream_sports_user/constants/const_list.dart';
 import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/class/remove_glow.dart';
 import 'package:dream_sports_user/screens/home/screen_turfstatus.dart';
+import 'package:dream_sports_user/services/firestore.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -28,30 +28,66 @@ class SpotScreen extends StatelessWidget {
               Expanded(
                 child: ScrollConfiguration(
                   behavior: MyBehavior(),
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (ctx) =>
-                                      TurfStatusScreen(index: index)));
-                        },
-                        child: spotlist(
-                            index: index,
-                            context: context,
-                            height: meidaquery.height * 0.15,
-                            width: meidaquery.width * 1,
-                            imwidth: meidaquery.width * 0.3,
-                            childtext: turfname[index],
-                            location: locations[index],
-                            url: imageurl[index]),
-                      );
-                    },
-                    itemCount: turfname.length,
-                  ),
+                  child: StreamBuilder(
+                      stream: store.collection('TurfOwner').snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                        if (!snapshot.hasData) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+
+                        return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (context, index) {
+                            final document = snapshot.data!.docs[index];
+                            final data = document.data();
+
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (ctx) =>
+                                            TurfStatusScreen(index: index)));
+                              },
+                              child: StreamBuilder(
+                                  stream: store
+                                      .collection('TurfOwner')
+                                      .doc(data['userid'])
+                                      .collection('images')
+                                      .snapshots(),
+                                  builder: (context, snapshot1) {
+                                    if (snapshot1.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                    if (!snapshot1.hasData) {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                    final url =
+                                        snapshot1.data!.docs[0]['turfimage'];
+                                    return spotlist(
+                                        index: index,
+                                        context: context,
+                                        height: meidaquery.height * 0.12,
+                                        width: meidaquery.width * 1,
+                                        imwidth: meidaquery.width * 0.4,
+                                        childtext: data['courtname'],
+                                        location: data['location'],
+                                        url: url);
+                                  }),
+                            );
+                          },
+                          itemCount: snapshot.data!.docs.length,
+                        );
+                      }),
                 ),
               )
             ],

@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/widgets/free_widget.dart';
+import 'package:dream_sports_user/services/firestore.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dream_sports_user/registering/screen_date_genter.dart';
 import 'package:flutter/material.dart';
@@ -30,15 +31,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.initState();
   }
 
-  PickedFile? imagefile;
-  // final ImagePicker _picker = ImagePicker();
-
-  getImagegallery(BuildContext context) async {
-    var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      imagefile = File(picture!.path) as PickedFile?;
-    });
-  }
+  File? _image;
+  String? downimag;
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +50,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 backgroundColor: const Color.fromARGB(255, 199, 198, 198),
                 child: CircleAvatar(
                   radius: mediaquery.width * 0.13,
+                  child: _image != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(mediaquery.width * 0.13)),
+                          child: Image.file(_image!),
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(mediaquery.width * 0.13)),
+                          child: Image.network(
+                              "https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail.png"),
+                        ),
                 ),
               ),
               TextButton(
                   onPressed: () {
                     showModalBottomSheet(
                       context: context,
+                      isScrollControlled: true,
+                      showDragHandle: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(25.0),
+                        ),
+                      ),
                       builder: (context) => imgbottom(
-                          width: mediaquery.width,
-                          height: mediaquery.height * 0.1),
+                          height: mediaquery.height * 0.22,
+                          toheight: mediaquery.height * 0.06,
+                          towidth: mediaquery.width),
                     );
                   },
                   child: const Text(
@@ -153,6 +167,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     fixedSize:
                         Size(mediaquery.width, mediaquery.height * 0.06)),
                 onPressed: () {
+                  // uploadimage(downimage: downimag, image: _image);
+                  // showsnackbar(content: 'Success', color: Colors.green);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -161,7 +177,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 about: aboutcontroller.text.trim(),
                                 phone: widget.phone,
                                 email: emailcontroller.text.trim(),
-                                imagepath: 'shfjdh',
                               )));
                 },
                 child: const Text(
@@ -177,35 +192,107 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget imgbottom({
-    var width,
-    var height,
-  }) {
+  getimage({required ImageSource sorce}) async {
+    try {
+      final imagePicker = ImagePicker();
+      final pickedImage = await imagePicker.pickImage(source: sorce);
+      if (pickedImage == null) return null;
+      File? image = File(pickedImage.path);
+      image = await imgcrop(imagefile: image);
+      setState(() {
+        _image = image;
+        Navigator.pop(context);
+      });
+    } on PlatformException catch (e) {
+      print(e);
+      Navigator.pop(context);
+    }
+  }
+
+  Future<File?> imgcrop({required File imagefile}) async {
+    CroppedFile? cropedimage =
+        await ImageCropper().cropImage(sourcePath: imagefile.path);
+    if (cropedimage == null) return null;
+    return File(cropedimage.path);
+  }
+
+  imgbottom({var width, var height, var toheight, var towidth}) {
     return Container(
       width: width,
       height: height,
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          fieldtext('Choose Profile Pic'),
-          sheight,
-          sheight,
-          Row(
-            children: <Widget>[
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.camera),
-              ),
-              swidth,
-              swidth,
-              IconButton(
-                onPressed: () {
-                  getImagegallery(context);
-                },
-                icon: const Icon(Icons.image),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Choose Photo',
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
               )
             ],
-          )
+          ),
+          const SizedBox(height: 10),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    fixedSize: Size(towidth, toheight),
+                    backgroundColor: whiteback,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)))),
+                onPressed: () {
+                  getimage(sorce: ImageSource.camera);
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.camera,
+                      color: blackback,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      'Use Camera',
+                      style: TextStyle(
+                          color: blackback, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 5),
+              const Text('OR', style: TextStyle(fontSize: 15)),
+              const SizedBox(height: 5),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    fixedSize: Size(towidth, toheight),
+                    backgroundColor: whiteback,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)))),
+                onPressed: () {
+                  getimage(sorce: ImageSource.gallery);
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.photo,
+                      color: blackback,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      'Brouser Gallery',
+                      style: TextStyle(
+                          color: blackback, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20)
+            ],
+          ),
         ],
       ),
     );

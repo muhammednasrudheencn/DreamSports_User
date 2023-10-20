@@ -28,28 +28,6 @@ const List offerbanner = [
   }
 ];
 
-const List<String> imageurl = [
-  'https://5.imimg.com/data5/SELLER/Default/2022/7/NO/TC/UJ/134008477/football-turf-4-500x500.jpeg',
-  'https://content.jdmagicbox.com/comp/malappuram/q7/9999px483.x483.220319002209.w9q7/catalogue/squad-x-football-turf-malappuram-mini-football-fields-220u5c121h.jpg?clr=',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw3QjClWkBaB7iFpF6-zsVSsQ0LAK-pc2xzg&usqp=CAU',
-  'https://5.imimg.com/data5/SELLER/Default/2023/7/324317415/HE/RS/OQ/56657667/7-a-side-football-turf-500x500.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCmepTC526owOKdqslvX-SYO6v7yrKV4azKQ&usqp=CAU',
-];
-const List<String> turfname = [
-  'Soccer City',
-  'Squad X',
-  'Golden Boot',
-  'Mini Camp',
-  'Soccer Point',
-];
-const List<String> locations = [
-  'Calicut',
-  'Ramanattukara',
-  'Faroke',
-  'Ramanattukara',
-  'Chelari',
-];
-
 List<Viewclass> viewclass = [
   Viewclass(
       prefixicon: const Icon(Icons.bookmark_added), childtext: 'My Booking'),

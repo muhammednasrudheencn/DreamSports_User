@@ -1,5 +1,6 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/home/navigated_screen.dart';
+import 'package:dream_sports_user/screens/home/screen_turfstatus.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -310,21 +311,30 @@ Widget spotlist({
         child: Row(
           children: [
             Container(
+              margin: const EdgeInsets.all(5),
               width: imwidth,
               height: height,
               decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
                   image: DecorationImage(
                       image: NetworkImage(url!), fit: BoxFit.cover),
                   borderRadius: const BorderRadius.all(Radius.circular(7))),
             ),
-            swidth,
-            swidth,
+            const SizedBox(width: 50),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                fieldtext(childtext!),
-                Text(location!),
+                Text(
+                  childtext!,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2),
+                ),
+                Text(location!,
+                    style: const TextStyle(
+                        fontSize: 15, color: Color.fromARGB(255, 83, 82, 82))),
                 const SizedBox(
                   height: 10,
                   child: Image(
@@ -334,12 +344,6 @@ Widget spotlist({
                 )
               ],
             ),
-            const SizedBox(width: 50),
-            Align(
-              alignment: Alignment.centerRight,
-              child: button(context!, 'Book', homecolor, 70.0, 10.0,
-                  const NavigatedScreen(), 1.0),
-            )
           ],
         ),
       ),

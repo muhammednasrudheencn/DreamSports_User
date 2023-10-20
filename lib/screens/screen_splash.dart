@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Center(
           child: Image(
             image: const AssetImage(logo),
-            width: mediaquery.width * 0.4,
+            width: mediaquery.width * 0.6,
           ),
         ),
       ),

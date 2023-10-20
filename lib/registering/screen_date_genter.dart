@@ -11,14 +11,14 @@ class DateNdGenderScreen extends StatefulWidget {
   final String about;
   final String phone;
   final String email;
-  final String imagepath;
-  const DateNdGenderScreen(
-      {super.key,
-      required this.username,
-      required this.about,
-      required this.phone,
-      required this.email,
-      required this.imagepath});
+
+  const DateNdGenderScreen({
+    super.key,
+    required this.username,
+    required this.about,
+    required this.phone,
+    required this.email,
+  });
 
   @override
   State<DateNdGenderScreen> createState() => _DateNdGenderScreenState();
@@ -123,13 +123,13 @@ class _DateNdGenderScreenState extends State<DateNdGenderScreen> {
                   fixedSize: Size(mediaquery.width, mediaquery.height * 0.06)),
               onPressed: () {
                 addtofirestore(
-                    username: widget.username,
-                    about: widget.about,
-                    phone: widget.phone,
-                    email: widget.email,
-                    age: datecontrller.text,
-                    gender: gender,
-                    imagepath: widget.imagepath);
+                  username: widget.username,
+                  about: widget.about,
+                  phone: widget.phone,
+                  email: widget.email,
+                  age: datecontrller.text,
+                  gender: gender,
+                );
                 userlogin(context);
 
                 Navigator.push(
