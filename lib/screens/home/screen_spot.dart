@@ -29,7 +29,7 @@ class SpotScreen extends StatelessWidget {
                 child: ScrollConfiguration(
                   behavior: MyBehavior(),
                   child: StreamBuilder(
-                      stream: store.collection('TurfOwner').snapshots(),
+                      stream: store.collection('TurfDetails').snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -57,7 +57,7 @@ class SpotScreen extends StatelessWidget {
                               },
                               child: StreamBuilder(
                                   stream: store
-                                      .collection('TurfOwner')
+                                      .collection('TurfDetails')
                                       .doc(data['userid'])
                                       .collection('images')
                                       .snapshots(),

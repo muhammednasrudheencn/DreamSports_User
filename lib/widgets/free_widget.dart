@@ -157,3 +157,26 @@ Widget scrollwidget({var height, Widget? type, var itemcount}) {
     ),
   );
 }
+
+imgbottom({var width, var height, var toheight, var towidth}) {
+  return Container(
+    width: width,
+    height: height,
+    margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+    child: const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Pick Yor Time',
+              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+        SizedBox(height: 10),
+      ],
+    ),
+  );
+}

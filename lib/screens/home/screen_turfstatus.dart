@@ -28,7 +28,7 @@ class TurfStatusScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: StreamBuilder(
-            stream: store.collection('TurfOwner').snapshots(),
+            stream: store.collection('TurfDetails').snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
@@ -44,7 +44,7 @@ class TurfStatusScreen extends StatelessWidget {
                     Stack(children: [
                       StreamBuilder(
                           stream: store
-                              .collection('TurfOwner')
+                              .collection('TurfDetails')
                               .doc(data['userid'])
                               .collection('images')
                               .snapshots(),

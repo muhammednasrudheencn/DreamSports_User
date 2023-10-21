@@ -1,6 +1,4 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/home/navigated_screen.dart';
-import 'package:dream_sports_user/screens/home/screen_turfstatus.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +62,7 @@ Widget groundcontainer(
           turfname!,
           style: const TextStyle(
               color: blackback,
-              fontSize: 13,
+              fontSize: 15,
               fontWeight: FontWeight.w900,
               letterSpacing: 1),
         ),
@@ -74,7 +72,7 @@ Widget groundcontainer(
         Text(
           location!,
           style:
-              const TextStyle(color: blackback, fontSize: 10, letterSpacing: 1),
+              const TextStyle(color: blackback, fontSize: 12, letterSpacing: 1),
         ),
         const SizedBox(
           height: 4,
@@ -308,43 +306,47 @@ Widget spotlist({
       height: height,
       child: Padding(
         padding: const EdgeInsets.only(right: 10),
-        child: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(5),
-              width: imwidth,
-              height: height,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  image: DecorationImage(
-                      image: NetworkImage(url!), fit: BoxFit.cover),
-                  borderRadius: const BorderRadius.all(Radius.circular(7))),
-            ),
-            const SizedBox(width: 50),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  childtext!,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2),
-                ),
-                Text(location!,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(5),
+                width: imwidth,
+                height: height,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    image: DecorationImage(
+                        image: NetworkImage(url!), fit: BoxFit.cover),
+                    borderRadius: const BorderRadius.all(Radius.circular(7))),
+              ),
+              const SizedBox(width: 50),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    childtext!,
                     style: const TextStyle(
-                        fontSize: 15, color: Color.fromARGB(255, 83, 82, 82))),
-                const SizedBox(
-                  height: 10,
-                  child: Image(
-                    image: NetworkImage(football),
-                    fit: BoxFit.cover,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2),
                   ),
-                )
-              ],
-            ),
-          ],
+                  Text(location!,
+                      style: const TextStyle(
+                          fontSize: 15,
+                          color: Color.fromARGB(255, 83, 82, 82))),
+                  const SizedBox(
+                    height: 10,
+                    child: Image(
+                      image: NetworkImage(football),
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     ),

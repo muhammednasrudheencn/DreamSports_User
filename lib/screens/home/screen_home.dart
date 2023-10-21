@@ -113,7 +113,7 @@ class _HomeScreeenState extends State<HomeScreeen> {
               SizedBox(
                 height: mediaquery.height * 0.30,
                 child: StreamBuilder(
-                    stream: store.collection('TurfOwner').snapshots(),
+                    stream: store.collection('TurfDetails').snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
@@ -140,7 +140,7 @@ class _HomeScreeenState extends State<HomeScreeen> {
                             },
                             child: StreamBuilder(
                                 stream: store
-                                    .collection('TurfOwner')
+                                    .collection('TurfDetails')
                                     .doc(data['userid'])
                                     .collection('images')
                                     .snapshots(),
