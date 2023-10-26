@@ -1,11 +1,10 @@
+import 'package:dream_sports_user/constants/const_list.dart';
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/home/matchhost/screen_matchhost.dart';
-import 'package:dream_sports_user/screens/home/tournamenthost/screen_tournement.dart';
+import 'package:dream_sports_user/screens/match/screen_matchhost.dart';
+import 'package:dream_sports_user/screens/tournament/screen_tournement.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
+import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/material.dart';
-
-import '../../constants/const_list.dart';
-import '../../widgets/screens_widget.dart';
 
 class MatchScreen extends StatelessWidget {
   const MatchScreen({super.key});

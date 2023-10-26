@@ -1,8 +1,8 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/navigatedscreens/screen_chat.dart';
-import 'package:dream_sports_user/screens/navigatedscreens/screen_home.dart';
-import 'package:dream_sports_user/screens/navigatedscreens/screen_match.dart';
-import 'package:dream_sports_user/screens/navigatedscreens/screen_profile.dart';
+import 'package:dream_sports_user/screens/chatmessage/screen_chat.dart';
+import 'package:dream_sports_user/screens/homes/screen_home.dart';
+import 'package:dream_sports_user/screens/match/screen_match.dart';
+import 'package:dream_sports_user/screens/profile/screen_profile.dart';
 import 'package:dream_sports_user/screens/navigatedscreens/screen_spot.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';

@@ -1,6 +1,7 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/booking/screen_booking_detail.dart';
-import 'package:dream_sports_user/services/firestore.dart';
+import 'package:dream_sports_user/screens/chatmessage/screen_chatinterface.dart';
+import 'package:dream_sports_user/services/firestore_service.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,7 @@ class TurfStatusScreen extends StatelessWidget {
               }
               final document = snapshot.data!.docs[index];
               final data = document.data();
+              final number = '+91 ${data['contactinfo']}';
               return ListView(children: <Widget>[
                 Column(
                   children: [
@@ -146,7 +148,50 @@ class TurfStatusScreen extends StatelessWidget {
                                     BookingDetail(
                                       index: index,
                                     ),
-                                    1.0)
+                                    1.0),
+                                const SizedBox(height: 20),
+                                Row(
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {},
+                                      style: TextButton.styleFrom(
+                                        side: const BorderSide(width: 1),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 30),
+                                        child: Text(
+                                          'Pricing',
+                                          style: TextStyle(color: blackback),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: mediaquery.width * 0.07),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (ctx) => ChatInterface(
+                                                    username: data['courtname'],
+                                                    userphone: number,
+                                                    reciverid:
+                                                        data['userid'])));
+                                      },
+                                      style: TextButton.styleFrom(
+                                        side: const BorderSide(width: 1),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 25),
+                                        child: Text(
+                                          'Message',
+                                          style: TextStyle(color: blackback),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           ],

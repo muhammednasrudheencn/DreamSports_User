@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/services/firestore.dart';
+import 'package:dream_sports_user/services/firestore_service.dart';
 // import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:dream_sports_user/registering/screen_date_genter.dart';
+import 'package:dream_sports_user/screens/registering/screen_date_genter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

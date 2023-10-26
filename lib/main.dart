@@ -1,5 +1,5 @@
 import 'package:dream_sports_user/blocs/bloc/splashbloc_bloc.dart';
-import 'package:dream_sports_user/screens/screen_splash.dart';
+import 'package:dream_sports_user/screens/splash/screen_splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -4,7 +4,7 @@ import 'package:dream_sports_user/signup/screen_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../constants/const_variable.dart';
+import '../../constants/const_variable.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

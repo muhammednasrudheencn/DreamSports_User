@@ -1,5 +1,5 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/registering/screen_register.dart';
+import 'package:dream_sports_user/screens/registering/screen_register.dart';
 import 'package:dream_sports_user/services/signup_otp.dart';
 import 'package:dream_sports_user/signup/screen_signup.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';

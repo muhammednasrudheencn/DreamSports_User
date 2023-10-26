@@ -1,7 +1,7 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/class/remove_glow.dart';
 import 'package:dream_sports_user/screens/booking/screen_turfstatus.dart';
-import 'package:dream_sports_user/services/firestore.dart';
+import 'package:dream_sports_user/services/firestore_service.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/material.dart';
 

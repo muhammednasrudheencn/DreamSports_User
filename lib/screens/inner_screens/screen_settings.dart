@@ -1,5 +1,5 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/services/firestore.dart';
+import 'package:dream_sports_user/services/firestore_service.dart';
 import 'package:dream_sports_user/services/login_logout.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/cupertino.dart';
