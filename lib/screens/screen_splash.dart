@@ -1,5 +1,5 @@
 import 'package:dream_sports_user/blocs/bloc/splashbloc_bloc.dart';
-import 'package:dream_sports_user/screens/home/navigated_screen.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/navigated_screen.dart';
 import 'package:dream_sports_user/signup/screen_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

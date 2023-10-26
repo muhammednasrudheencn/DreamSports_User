@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:dream_sports_user/screens/home/navigated_screen.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/navigated_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

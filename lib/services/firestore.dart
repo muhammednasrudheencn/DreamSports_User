@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 
 final auth = FirebaseAuth.instance;
 final store = FirebaseFirestore.instance;
@@ -48,7 +47,7 @@ deleteuser() async {
   await store.collection('User').doc(auth.currentUser!.uid).delete();
 }
 
-uploadimage({required String? downimage, required File? image}) async {
+uploadprofile({required String? downimage, required File? image}) async {
   final postId = DateTime.now().millisecondsSinceEpoch.toString();
   Reference ref = storage
       .ref()
@@ -60,20 +59,64 @@ uploadimage({required String? downimage, required File? image}) async {
   await store
       .collection('User')
       .doc(auth.currentUser!.uid)
-      .collection('images')
-      .add({'Profileimg': downimage}).whenComplete(
-          () => showsnackbar(content: 'Image Uploaded'));
+      .collection('profile')
+      .doc(auth.currentUser!.uid)
+      .set({'Profileimg': downimage});
 }
 
-showsnackbar({BuildContext? context, required var content, Color? color}) {
-  ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
-    content: Text(content),
-    backgroundColor: color,
-    margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height - 100, right: 10, left: 10),
-    behavior: SnackBarBehavior.floating,
-    showCloseIcon: true,
-    closeIconColor: Colors.white,
-    duration: const Duration(seconds: 2),
-  ));
+uploadteamavatar({required String? downimage, required File? image}) async {
+  final postId = DateTime.now().millisecondsSinceEpoch.toString();
+  Reference ref = storage
+      .ref()
+      .child('${auth.currentUser!.uid}/TeamAvatar')
+      .child('PostId$postId');
+  await ref.putFile(image!);
+  downimage = await ref.getDownloadURL();
+
+  await store
+      .collection('User')
+      .doc(auth.currentUser!.uid)
+      .collection('Team')
+      .doc(auth.currentUser!.uid)
+      .collection('teamavatar')
+      .doc(auth.currentUser!.uid)
+      .set({'avatar': downimage});
+}
+
+addteamintofirestore({
+  required String teamname,
+  required String skill,
+}) async {
+  final Map<String, dynamic> userteam = {
+    'teamname': teamname,
+    'skill': skill,
+    'userid': auth.currentUser!.uid,
+  };
+
+  await store
+      .collection('User')
+      .doc(auth.currentUser!.uid)
+      .collection('Team')
+      .doc(auth.currentUser!.uid)
+      .set(userteam);
+}
+
+bookslotdetails(
+    {required String strttime,
+    required String endtime,
+    required bool isbooked,
+    required String userid}) async {
+  final Map<String, dynamic> slotbooking = {
+    'strttime': strttime,
+    'endtime': endtime,
+    'isBooked': isbooked,
+    'slotid': auth.currentUser!.uid
+  };
+
+  await store
+      .collection('TurfDetails')
+      .doc(userid)
+      .collection('BookedSlots')
+      .doc(userid)
+      .set(slotbooking);
 }

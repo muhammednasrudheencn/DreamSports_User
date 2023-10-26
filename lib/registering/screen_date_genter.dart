@@ -1,5 +1,5 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/home/navigated_screen.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/navigated_screen.dart';
 import 'package:dream_sports_user/services/firestore.dart';
 import 'package:dream_sports_user/services/login_logout.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
@@ -58,7 +58,7 @@ class _DateNdGenderScreenState extends State<DateNdGenderScreen> {
                       context: context,
                       initialDate: DateTime.now(),
                       firstDate: DateTime(1900),
-                      lastDate: DateTime(2050));
+                      lastDate: DateTime.now());
 
                   if (pickeddate != null) {
                     setState(() {
@@ -132,10 +132,7 @@ class _DateNdGenderScreenState extends State<DateNdGenderScreen> {
                 );
                 userlogin(context);
 
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (ctx) => const NavigatedScreen()));
+                registerstatus();
               },
               child: const Text(
                 'Continue',
@@ -146,5 +143,35 @@ class _DateNdGenderScreenState extends State<DateNdGenderScreen> {
         ),
       )),
     );
+  }
+
+  registerstatus() {
+    if (datecontrller.text.trim().isEmpty || gender == '') {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Registeration Failed Please Check Your Field',
+            style: TextStyle(fontSize: 15)),
+        backgroundColor: Colors.red,
+        margin: EdgeInsets.all(10),
+        behavior: SnackBarBehavior.floating,
+        showCloseIcon: true,
+        closeIconColor: Colors.white,
+        duration: Duration(seconds: 2),
+      ));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+          'Registeration Success',
+          style: TextStyle(fontSize: 15),
+        ),
+        backgroundColor: homecolor,
+        margin: EdgeInsets.all(10),
+        behavior: SnackBarBehavior.floating,
+        showCloseIcon: true,
+        closeIconColor: Colors.white,
+        duration: Duration(seconds: 2),
+      ));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (ctx) => const NavigatedScreen()));
+    }
   }
 }

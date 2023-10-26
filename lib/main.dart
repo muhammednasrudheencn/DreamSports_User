@@ -10,9 +10,14 @@ void main() async {
   runApp(const DreamSports());
 }
 
-class DreamSports extends StatelessWidget {
+class DreamSports extends StatefulWidget {
   const DreamSports({super.key});
 
+  @override
+  State<DreamSports> createState() => _DreamSportsState();
+}
+
+class _DreamSportsState extends State<DreamSports> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

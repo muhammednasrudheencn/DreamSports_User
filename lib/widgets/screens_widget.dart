@@ -167,7 +167,8 @@ Widget button2(
           fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 1),
     ),
     icon: iconof!,
-    style: ElevatedButton.styleFrom(backgroundColor: homecolor),
+    style: ElevatedButton.styleFrom(
+        backgroundColor: homecolor, fixedSize: Size(width, height)),
   );
 }
 

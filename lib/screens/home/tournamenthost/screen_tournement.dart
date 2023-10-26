@@ -1,5 +1,5 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/home/navigated_screen.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/navigated_screen.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:dream_sports_user/widgets/matchhost_widget.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
@@ -88,7 +88,7 @@ class TournementHostSCreen extends StatelessWidget {
             const SizedBox(height: 20),
             sheight,
             fieldtext('Roles'),
-            textfield(hint: 'Age')
+            // textfield(hint: 'Age')
           ],
         ),
       ),

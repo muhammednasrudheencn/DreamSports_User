@@ -1,8 +1,9 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/home/screen_home.dart';
-import 'package:dream_sports_user/screens/home/screen_match.dart';
-import 'package:dream_sports_user/screens/home/screen_profile.dart';
-import 'package:dream_sports_user/screens/home/screen_spot.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/screen_chat.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/screen_home.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/screen_match.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/screen_profile.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/screen_spot.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -17,6 +18,7 @@ final screens = [
   const HomeScreeen(),
   const SpotScreen(),
   const MatchScreen(),
+  const ChatScreen(),
   const ProfileScreen()
 ];
 int selection = 0;
@@ -44,6 +46,7 @@ class _NavigatedScreenState extends State<NavigatedScreen> {
               GButton(icon: Icons.home_outlined, text: 'Home'),
               GButton(icon: Icons.stadium_outlined, text: 'Spot'),
               GButton(icon: Icons.width_wide_rounded, text: 'Match'),
+              GButton(icon: Icons.chat, text: 'Chat'),
               GButton(icon: Icons.person, text: 'Profile')
             ]),
       ),

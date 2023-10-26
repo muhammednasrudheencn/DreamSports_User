@@ -2,49 +2,49 @@ import 'dart:io';
 
 import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/services/firestore.dart';
-// import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:dream_sports_user/registering/screen_date_genter.dart';
+import 'package:dream_sports_user/widgets/free_widget.dart';
+import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
-class RegisterScreen extends StatefulWidget {
-  final String phone;
-  const RegisterScreen({super.key, required this.phone});
+class CeateTeamScreen extends StatefulWidget {
+  const CeateTeamScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<CeateTeamScreen> createState() => _CeateTeamScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  final usernamecontroller = TextEditingController();
+File? _image;
+String? downimg;
+final teamnamecontroller = TextEditingController();
+String skill = '';
 
-  final aboutcontroller = TextEditingController();
-
-  final phonecontroller = TextEditingController();
-
-  final emailcontroller = TextEditingController();
-
-  @override
-  void initState() {
-    phonecontroller.text = widget.phone;
-    super.initState();
-  }
-
-  File? _image;
-  String? downimag;
-
+class _CeateTeamScreenState extends State<CeateTeamScreen> {
   @override
   Widget build(BuildContext context) {
     final mediaquery = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Center(
+      backgroundColor: Color.fromARGB(255, 248, 246, 246),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          color: blackback,
+          onPressed: () => Navigator.pop(context),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: headingtext(heading: 'CREATE YOUR TEAM'),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+          child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: SingleChildScrollView(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
               CircleAvatar(
                   radius: mediaquery.width * 0.14,
                   backgroundColor: const Color.fromARGB(255, 199, 198, 198),
@@ -83,113 +83,133 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: const Text(
                     'Choos Profile Pic',
                   )),
+              const SizedBox(height: 20),
+              textfield1(
+                  hint: 'Team Name',
+                  preicon: const Icon(Icons.groups),
+                  controller: teamnamecontroller),
               sheight,
               sheight,
               sheight,
-              TextFormField(
-                decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: whiteback,
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: whiteback),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: homecolor),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    prefixIcon: Icon(Icons.person),
-                    hintText: 'User Name'),
-                controller: usernamecontroller,
-
-                // inputFormatters: [
-                //   LengthLimitingTextInputFormatter(length),
-                // ],
-              ),
+              fieldtext('Team Skill'),
               sheight,
-              TextFormField(
-                decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: whiteback,
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: whiteback),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: homecolor),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    prefixIcon: Icon(Icons.abc),
-                    hintText: 'About'),
-                controller: aboutcontroller,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        skill = 'Beginner';
+                      });
+                    },
+                    child: Container(
+                      width: mediaquery.width * 0.3,
+                      height: mediaquery.height * 0.06,
+                      decoration: BoxDecoration(
+                          color: whiteback,
+                          border: Border.all(
+                              color: const Color.fromARGB(255, 238, 237, 237)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(6))),
+                      child: Center(
+                        child: Text(
+                          'Beginner',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: skill == 'Beginner'
+                                  ? blackback
+                                  : Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        skill = 'Amature';
+                      });
+                    },
+                    child: Container(
+                      width: mediaquery.width * 0.3,
+                      height: mediaquery.height * 0.06,
+                      decoration: BoxDecoration(
+                          color: whiteback,
+                          border: Border.all(
+                              color: const Color.fromARGB(255, 238, 237, 237)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(6))),
+                      child: Center(
+                        child: Text(
+                          'Amature',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  skill == 'Amature' ? blackback : Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        skill = 'Advanced';
+                      });
+                    },
+                    child: Container(
+                      width: mediaquery.width * 0.3,
+                      height: mediaquery.height * 0.06,
+                      decoration: BoxDecoration(
+                          color: whiteback,
+                          border: Border.all(
+                              color: const Color.fromARGB(255, 238, 237, 237)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(6))),
+                      child: Center(
+                        child: Text(
+                          'Advanced',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: skill == 'Advanced'
+                                  ? blackback
+                                  : Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              sheight,
-              TextFormField(
-                decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: whiteback,
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: whiteback),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: homecolor),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    prefixIcon: Icon(Icons.phone_android_outlined),
-                    hintText: 'Mobile'),
-                controller: phonecontroller,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(10),
-                ],
-              ),
-              sheight,
-              TextFormField(
-                decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: whiteback,
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: whiteback),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: homecolor),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    prefixIcon: Icon(Icons.email_outlined),
-                    hintText: 'Email'),
-                controller: emailcontroller,
-
-                // inputFormatters: [
-                //   LengthLimitingTextInputFormatter(length),
-                // ],
-              ),
-              sheight,
+              const SizedBox(height: 30),
               ElevatedButton(
+                onPressed: () {
+                  createstatus();
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: homecolor,
                     fixedSize:
                         Size(mediaquery.width, mediaquery.height * 0.06)),
-                onPressed: () {
-                  registerstatus();
-                  uploadprofile(downimage: downimag, image: _image);
-                },
                 child: const Text(
-                  'Continue',
-                  style:
-                      TextStyle(letterSpacing: 1, fontWeight: FontWeight.bold),
+                  'Create',
+                  style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.bold),
                 ),
               )
-            ]),
+            ],
           ),
         ),
-      ),
+      )),
     );
   }
 
-  registerstatus() {
-    if (usernamecontroller.text.trim().isEmpty ||
-        aboutcontroller.text.trim().isEmpty ||
-        phonecontroller.text.trim().isEmpty ||
-        emailcontroller.text.trim().isEmpty) {
+  createstatus() {
+    if (teamnamecontroller.text.trim().isEmpty || skill == '') {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Registeration Failed Please Check Your Field',
-            style: TextStyle(fontSize: 15)),
+        content: Text('Team Creation Failed : Take A Team Name',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.red,
         margin: EdgeInsets.all(10),
         behavior: SnackBarBehavior.floating,
@@ -198,11 +218,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         duration: Duration(seconds: 2),
       ));
     } else {
+      addteamintofirestore(
+          teamname: teamnamecontroller.text.trim(), skill: skill);
+      uploadteamavatar(downimage: downimg, image: _image);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text(
-          'Registeration Success',
-          style: TextStyle(fontSize: 15),
-        ),
+        content: Text('Your Team Created Successfuly',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
         backgroundColor: homecolor,
         margin: EdgeInsets.all(10),
         behavior: SnackBarBehavior.floating,
@@ -210,15 +231,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         closeIconColor: Colors.white,
         duration: Duration(seconds: 2),
       ));
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (ctx) => DateNdGenderScreen(
-                    username: usernamecontroller.text.trim(),
-                    about: aboutcontroller.text.trim(),
-                    phone: widget.phone,
-                    email: emailcontroller.text.trim(),
-                  )));
+      Navigator.pop(context);
     }
   }
 

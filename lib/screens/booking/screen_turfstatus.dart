@@ -1,5 +1,5 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/home/screen_booking_detail.dart';
+import 'package:dream_sports_user/screens/booking/screen_booking_detail.dart';
 import 'package:dream_sports_user/services/firestore.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
@@ -22,7 +22,7 @@ class TurfStatusScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: headingtext(heading: 'Turf Status'),
+        title: headingtext(heading: 'TURF STATUS'),
         centerTitle: true,
       ),
       body: Padding(
@@ -94,23 +94,45 @@ class TurfStatusScreen extends StatelessWidget {
                           children: [
                             Column(
                               children: [
-                                Text(
-                                  data['courtname'],
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1),
-                                ),
-                                Text(
-                                  data['location'],
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                  child: Image(
-                                    image: NetworkImage(football),
-                                    fit: BoxFit.cover,
-                                  ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      data['courtname'],
+                                      style: const TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 0),
+                                    ),
+                                    sheight,
+                                    Text(
+                                      data['location'],
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          color:
+                                              Color.fromARGB(255, 83, 83, 83),
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1),
+                                    ),
+                                    Text(
+                                      '+91 ${data['contactinfo']}',
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          color:
+                                              Color.fromARGB(255, 83, 83, 83),
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1),
+                                    ),
+                                    Text(
+                                      data['discription'],
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          color:
+                                              Color.fromARGB(255, 83, 83, 83),
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1),
+                                    )
+                                  ],
                                 ),
                                 SizedBox(
                                   height: mediaquery.height * 0.05,
@@ -119,9 +141,11 @@ class TurfStatusScreen extends StatelessWidget {
                                     context,
                                     'Book Now',
                                     homecolor,
-                                    mediaquery.width * 0.5,
-                                    mediaquery.height * 0.010,
-                                    const BookingDetail(),
+                                    mediaquery.width * 0.6,
+                                    mediaquery.height * 0.05,
+                                    BookingDetail(
+                                      index: index,
+                                    ),
                                     1.0)
                               ],
                             ),

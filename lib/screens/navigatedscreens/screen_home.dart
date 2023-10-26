@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dream_sports_user/constants/const_list.dart';
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/home/screen_turfstatus.dart';
+import 'package:dream_sports_user/screens/booking/screen_turfstatus.dart';
 import 'package:dream_sports_user/services/firestore.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';

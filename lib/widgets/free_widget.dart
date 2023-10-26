@@ -1,15 +1,29 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
+import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-Widget textfield(
-    {Icon? iconof, var length, var hint, Widget? type, var controller}) {
-  return TextFormField(
-    decoration: InputDecoration(prefixIcon: iconof, labelText: hint),
+Widget textfield1(
+    {required TextEditingController controller,
+    Icon? preicon,
+    required String? hint,
+    TextInputType? type,
+    var length}) {
+  return TextField(
+    keyboardType: type,
+    maxLength: length,
+    decoration: InputDecoration(
+        filled: true,
+        fillColor: whiteback,
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: whiteback),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: homecolor),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        prefixIcon: preicon,
+        hintText: hint),
     controller: controller,
-    inputFormatters: [
-      LengthLimitingTextInputFormatter(length),
-    ],
   );
 }
 
@@ -31,7 +45,10 @@ Widget button(
     },
     child: Text(
       childtext,
-      style: TextStyle(letterSpacing: letterspace, fontWeight: FontWeight.bold),
+      style: TextStyle(
+          letterSpacing: letterspace,
+          fontSize: 15,
+          fontWeight: FontWeight.bold),
     ),
   );
 }
@@ -158,25 +175,18 @@ Widget scrollwidget({var height, Widget? type, var itemcount}) {
   );
 }
 
-imgbottom({var width, var height, var toheight, var towidth}) {
-  return Container(
-    width: width,
-    height: height,
-    margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-    child: const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Pick Yor Time',
-              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-            )
-          ],
-        ),
-        SizedBox(height: 10),
-      ],
+Widget customappbar(
+    {required BuildContext context, required String childtext}) {
+  return AppBar(
+    automaticallyImplyLeading: false,
+    leading: IconButton(
+      icon: const Icon(Icons.arrow_back_ios_new),
+      color: blackback,
+      onPressed: () => Navigator.pop(context),
     ),
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    title: headingtext(heading: 'TURF STATUS'),
+    centerTitle: true,
   );
 }

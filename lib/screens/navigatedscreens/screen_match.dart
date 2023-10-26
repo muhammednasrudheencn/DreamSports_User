@@ -1,6 +1,6 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
-import 'package:dream_sports_user/screens/home/hostingscreens/screen_matchhost.dart';
-import 'package:dream_sports_user/screens/home/hostingscreens/screen_tournement.dart';
+import 'package:dream_sports_user/screens/home/matchhost/screen_matchhost.dart';
+import 'package:dream_sports_user/screens/home/tournamenthost/screen_tournement.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -42,11 +42,12 @@ class MatchScreen extends StatelessWidget {
               SizedBox(
                 width: mediaquery.width * 1,
                 child: button2(
-                    childtext: 'Host Mtch',
-                    height: mediaquery.height * 0.10,
-                    iconof: const Icon(Icons.sports),
                     context: context,
-                    screen: const MatchHostingScreen()),
+                    screen: const MatchHostingScreen(),
+                    childtext: 'Host Match',
+                    height: mediaquery.height * 0.010,
+                    width: mediaquery.width,
+                    iconof: const Icon(Icons.sports)),
               ),
               const SizedBox(height: 30),
               fieldtext('Tournement Around You'),
@@ -73,7 +74,8 @@ class MatchScreen extends StatelessWidget {
                     context: context,
                     screen: const TournementHostSCreen(),
                     childtext: 'Host Tournament',
-                    height: mediaquery.height * 0.10,
+                    height: mediaquery.height * 0.010,
+                    width: mediaquery.width,
                     iconof: const Icon(Icons.sports)),
               )
             ],
