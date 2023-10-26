@@ -43,11 +43,13 @@ class _ChatInterfaceState extends State<ChatInterface> {
             color: blackback,
             onPressed: () => Navigator.pop(context),
           ),
-          backgroundColor: homecolor,
+          backgroundColor: whiteback,
+          toolbarHeight: 80,
           title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const CircleAvatar(),
-              swidth,
+              const CircleAvatar(radius: 25),
+              const SizedBox(width: 30),
               headingtext(heading: widget.username),
             ],
           ),
@@ -98,6 +100,7 @@ class _ChatInterfaceState extends State<ChatInterface> {
       alignment: alignment,
       child: chatbubble(
         message: data['message'],
+        senderid: data['senderid'],
         color: data['senderid'] == auth.currentUser!.uid
             ? homecolor
             : Color.fromARGB(255, 122, 255, 126),
