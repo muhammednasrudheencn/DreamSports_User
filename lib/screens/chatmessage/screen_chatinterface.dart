@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/chatmessage/chatbuuble.dart';
+import 'package:dream_sports_user/screens/chatmessage/const.dart';
 import 'package:dream_sports_user/services/chat_service.dart';
 import 'package:dream_sports_user/services/firestore_service.dart';
-import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/material.dart';
 
 class ChatInterface extends StatefulWidget {
-  final String userphone;
+  final String profile;
   final String reciverid;
   final String username;
   const ChatInterface(
       {super.key,
       required this.username,
-      required this.userphone,
+      required this.profile,
       required this.reciverid});
 
   @override
@@ -48,7 +48,10 @@ class _ChatInterfaceState extends State<ChatInterface> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const CircleAvatar(radius: 25),
+              CircleAvatar(
+                radius: 25,
+                backgroundImage: Image.network(widget.profile).image,
+              ),
               const SizedBox(width: 30),
               headingtext(heading: widget.username),
             ],
@@ -102,8 +105,8 @@ class _ChatInterfaceState extends State<ChatInterface> {
         message: data['message'],
         senderid: data['senderid'],
         color: data['senderid'] == auth.currentUser!.uid
-            ? homecolor
-            : Color.fromARGB(255, 122, 255, 126),
+            ? const Color.fromARGB(255, 0, 162, 255)
+            : const Color.fromARGB(255, 158, 158, 158),
       ),
     );
   }
@@ -112,11 +115,18 @@ class _ChatInterfaceState extends State<ChatInterface> {
     return Row(
       children: [
         Expanded(
-          child: textfield1(controller: messagecontroller, hint: 'Message'),
+          child: messageinput(
+              preicon: const Icon(
+                Icons.emoji_emotions_outlined,
+                color: Colors.grey,
+              ),
+              controller: messagecontroller,
+              hint: 'Message'),
         ),
         ElevatedButton(
           onPressed: sendmessages,
-          style: ElevatedButton.styleFrom(shape: const CircleBorder()),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: homecolor, shape: const CircleBorder()),
           child: const Padding(
             padding: EdgeInsets.all(10.0),
             child: Icon(

@@ -12,23 +12,32 @@ class ChatService extends ChangeNotifier {
     final String currentuserid = auth.currentUser!.uid;
     final String? curretusernumber = auth.currentUser!.phoneNumber;
     final Timestamp timestamp = Timestamp.now();
+    if (message != '') {
+      Message newmessage = Message(
+          senderid: currentuserid,
+          senderNumber: curretusernumber!,
+          reciverid: reciverid,
+          message: message,
+          timestamp: timestamp);
 
-    Message newmessage = Message(
-        senderid: currentuserid,
-        senderNumber: curretusernumber!,
-        reciverid: reciverid,
-        message: message,
-        timestamp: timestamp);
+      Map<String, dynamic> chatroom = {
+        'lastmessage': message,
+        'roomusers': [currentuserid, reciverid],
+        'lasttime': timestamp
+      };
 
-    List<String> ids = [currentuserid, reciverid];
-    ids.sort();
-    String chatroomid = ids.join("_");
+      List<String> ids = [currentuserid, reciverid];
+      ids.sort();
+      String chatroomid = ids.join("_");
 
-    await store
-        .collection('chat_rooms')
-        .doc(chatroomid)
-        .collection('messages')
-        .add(newmessage.tomap());
+      await store
+          .collection('chat_rooms')
+          .doc(chatroomid)
+          .collection('messages')
+          .add(newmessage.tomap());
+
+      await store.collection('chat_rooms').doc(chatroomid).set(chatroom);
+    }
   }
 
   Stream<QuerySnapshot> getmessages(
