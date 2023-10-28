@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          logocontainer(height: mediaquery.height * 0.07),
+                          logocontainer(height: mediaquery.height * 0.10),
                           headingtext(heading: 'Profile'),
                         ],
                       ),

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/chatmessage/screen_chatinterface.dart';
 import 'package:dream_sports_user/services/firestore_service.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
@@ -10,18 +9,13 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final mediaquery = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: whiteback,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_rounded,
-              color: blackback,
-            )),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: logocontainer(),
         title: headingtext(heading: 'CHAT LIST'),
         centerTitle: true,
       ),
