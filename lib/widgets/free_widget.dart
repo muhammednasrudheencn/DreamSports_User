@@ -190,3 +190,19 @@ Widget customappbar(
     centerTitle: true,
   );
 }
+
+Widget oroption({var childtext}) {
+  return Row(children: <Widget>[
+    const Expanded(
+        child: Divider(
+      thickness: 1,
+      color: Colors.grey,
+    )),
+    Text(childtext),
+    const Expanded(
+        child: Divider(
+      thickness: 1,
+      color: Colors.grey,
+    )),
+  ]);
+}

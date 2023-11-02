@@ -106,7 +106,7 @@ class _ChatInterfaceState extends State<ChatInterface> {
         senderid: data['senderid'],
         color: data['senderid'] == auth.currentUser!.uid
             ? const Color.fromARGB(255, 0, 162, 255)
-            : const Color.fromARGB(255, 158, 158, 158),
+            : const Color.fromARGB(255, 126, 126, 126),
       ),
     );
   }

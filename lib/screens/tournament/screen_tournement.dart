@@ -1,7 +1,7 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
+import 'package:dream_sports_user/screens/match/const.dart';
 import 'package:dream_sports_user/screens/navigatedscreens/navigated_screen.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
-import 'package:dream_sports_user/widgets/matchhost_widget.dart';
 import 'package:dream_sports_user/widgets/screens_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -43,30 +43,33 @@ class TournementHostSCreen extends StatelessWidget {
             fieldtext('Choose Your Game'),
             sheight,
             sheight,
-            scrollwidget(
-                height: mediaquery.height * 0.070,
-                itemcount: 10,
-                type: game(
-                    height: mediaquery.height * 0.060,
-                    width: mediaquery.width * 0.20)),
+            // scrollwidget(
+            //     height: mediaquery.height * 0.070,
+            //     itemcount: 10,
+            //     type: game(
+            //         height: mediaquery.height * 0.060,
+            //         gamet: 'sample',
+            //         width: mediaquery.width * 0.20)),
             const SizedBox(height: 30),
             fieldtext('Choose Your Game Type'),
             const SizedBox(height: 30),
-            scrollwidget(
-                height: mediaquery.height * 0.070,
-                itemcount: 10,
-                type: game(
-                    height: mediaquery.height * 0.060,
-                    width: mediaquery.width * 0.4)),
+            // scrollwidget(
+            //     height: mediaquery.height * 0.070,
+            //     itemcount: 10,
+            //     type: game(
+            //         gamet: 'sample',
+            //         height: mediaquery.height * 0.060,
+            //         width: mediaquery.width * 0.4)),
             const SizedBox(height: 30),
             fieldtext('Choose Your Team'),
             const SizedBox(height: 30),
-            scrollwidget(
-                height: mediaquery.height * 0.070,
-                itemcount: 1,
-                type: game(
-                    height: mediaquery.height * 0.060,
-                    width: mediaquery.width * 0.4)),
+            // scrollwidget(
+            //     height: mediaquery.height * 0.070,
+            //     itemcount: 1,
+            //     type: game(
+            //         gamet: 'sample',
+            //         height: mediaquery.height * 0.060,
+            //         width: mediaquery.width * 0.4)),
             sheight,
             const Row(children: <Widget>[
               Expanded(
