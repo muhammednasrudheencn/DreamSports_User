@@ -78,10 +78,8 @@ Widget groundcontainer(
           height: 4,
         ),
         const SizedBox(
-          width: 12,
-          child: Image(
-              image: NetworkImage(
-                  'https://www.pngkit.com/png/detail/69-698330_football-clipart-black-and-white-football-black-white.png')),
+          width: 10,
+          child: Image(image: NetworkImage(football)),
         )
       ],
     ),
@@ -182,25 +180,23 @@ Widget infoitems() {
   );
 }
 
-Widget matches({var height, var width, String? text}) {
+Widget matches({var height, var width, String? text, var teamname}) {
   return Container(
     height: height,
     width: width,
     decoration: BoxDecoration(
         border: Border.all(),
         borderRadius: const BorderRadius.all(Radius.circular(7))),
-    child: const Center(
+    child: Center(
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('by User'),
-                sheight,
-                sheight,
-                Row(
+                Text(teamname),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
@@ -215,7 +211,7 @@ Widget matches({var height, var width, String? text}) {
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 10,
                           child: Image(
                             image: NetworkImage(football),
                             fit: BoxFit.cover,

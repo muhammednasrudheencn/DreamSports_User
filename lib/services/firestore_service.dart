@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:uuid/uuid.dart';
 
 final auth = FirebaseAuth.instance;
 final store = FirebaseFirestore.instance;
 final storage = FirebaseStorage.instance;
+
 addtofirestore({
   required String username,
   required String about,
@@ -119,4 +121,27 @@ bookslotdetails(
       .collection('BookedSlots')
       .doc(userid)
       .set(slotbooking);
+}
+
+matchaddtofirestore({
+  required String game,
+  required String teamname,
+  required String gametype,
+  required String date,
+  required String location,
+  required String preground,
+}) async {
+  final uuid = Uuid().v4();
+  final Map<String, dynamic> matches = {
+    'game': game,
+    'gametype': gametype,
+    'teamname': teamname,
+    'date': date,
+    'location': location,
+    'ground': preground,
+    'documentid': uuid,
+    'userid': auth.currentUser!.uid,
+  };
+
+  store.collection('Matches').doc(uuid).set(matches);
 }

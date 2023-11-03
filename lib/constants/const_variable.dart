@@ -19,7 +19,6 @@ const swidth = SizedBox(
   width: 10,
 );
 
-const football =
-    'https://www.pngkit.com/png/detail/69-698330_football-clipart-black-and-white-football-black-white.png';
+const football = 'https://cdn-icons-png.flaticon.com/512/1165/1165187.png';
 
 const user = 'assets/camera.jpg';

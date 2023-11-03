@@ -179,3 +179,16 @@ Widget game({var height, var width, String? gamet, Color? gcolor, String? g}) {
     ),
   );
 }
+
+Widget ctextfild(
+    {TextEditingController? controller, String? hint, Icon? icons}) {
+  return TextField(
+    controller: controller,
+    decoration: InputDecoration(
+        hintText: hint,
+        prefixIcon: icons,
+        border: const OutlineInputBorder(
+            borderSide: BorderSide(),
+            borderRadius: BorderRadius.all(Radius.circular(7)))),
+  );
+}
