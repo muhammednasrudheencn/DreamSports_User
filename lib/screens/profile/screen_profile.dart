@@ -4,6 +4,7 @@ import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/class/remove_glow.dart';
 import 'package:dream_sports_user/screens/inner_screens/screen_create_team.dart';
 import 'package:dream_sports_user/screens/inner_screens/screen_settings.dart';
+import 'package:dream_sports_user/screens/profile/const.dart';
 import 'package:dream_sports_user/services/firestore_service.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
 import 'package:flutter/material.dart';
@@ -204,7 +205,7 @@ class ProfileScreen extends StatelessWidget {
                                     ),
                                   );
                                 } else {
-                                  return Text("data");
+                                  return const Text("data");
                                 }
                               })
                         ],
@@ -219,12 +220,28 @@ class ProfileScreen extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return ListTile(
                                 onTap: () {
-                                  if (index == 3) {
+                                  if (index == 1) {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (ctx) =>
                                                 const SettingsScreen()));
+                                  }
+                                  if (index == 0) {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      showDragHandle: true,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(25.0),
+                                        ),
+                                      ),
+                                      builder: (context) => snackbaronhelp(
+                                          height: mediaquery.height * 0.22,
+                                          toheight: mediaquery.height * 0.06,
+                                          towidth: mediaquery.width),
+                                    );
                                   }
                                 },
                                 title: Text(

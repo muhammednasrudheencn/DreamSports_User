@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/services/firestore_service.dart';
 import 'package:flutter/material.dart';

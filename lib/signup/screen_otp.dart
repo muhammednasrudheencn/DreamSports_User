@@ -1,5 +1,8 @@
 import 'package:dream_sports_user/constants/const_variable.dart';
+import 'package:dream_sports_user/screens/navigatedscreens/navigated_screen.dart';
 import 'package:dream_sports_user/screens/registering/screen_register.dart';
+import 'package:dream_sports_user/services/firestore_service.dart';
+import 'package:dream_sports_user/services/login_logout.dart';
 import 'package:dream_sports_user/services/signup_otp.dart';
 import 'package:dream_sports_user/signup/screen_signup.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
@@ -53,6 +56,7 @@ class _OtpScreenState extends State<OtpScreen> {
               const SizedBox(
                 height: 40,
               ),
+
               Pinput(
                 length: 6,
                 showCursor: true,
@@ -62,13 +66,22 @@ class _OtpScreenState extends State<OtpScreen> {
                         .copyWith(border: Border.all(color: homecolor))),
                 onChanged: (value) {
                   if (value.length == 6) {
-                    verifyotp(context,
-                        otp: value.trim(),
-                        verify: widget.verify,
-                        screen: RegisterScreen(phone: widget.phone));
+                    if (auth.currentUser != null) {
+                      verifyotp(context,
+                          otp: value.trim(),
+                          verify: widget.verify,
+                          screen: const NavigatedScreen());
+                      userlogin(context);
+                    } else {
+                      verifyotp(context,
+                          otp: value.trim(),
+                          verify: widget.verify,
+                          screen: RegisterScreen(phone: widget.phone));
+                    }
                   }
                 },
               ),
+
               const SizedBox(
                 height: 40,
               ),

@@ -21,4 +21,4 @@ const swidth = SizedBox(
 
 const football = 'https://cdn-icons-png.flaticon.com/512/1165/1165187.png';
 
-const user = 'assets/camera.jpg';
+const user = 'assets/219988.png';

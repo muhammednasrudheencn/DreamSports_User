@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/match/const.dart';
 import 'package:dream_sports_user/screens/navigatedscreens/navigated_screen.dart';
@@ -11,12 +13,15 @@ class MatchDetailsScreen extends StatelessWidget {
   final String game;
   final String gametype;
   final String teamname;
+  dynamic teamnavatar;
 
-  MatchDetailsScreen(
-      {super.key,
-      required this.game,
-      required this.gametype,
-      required this.teamname});
+  MatchDetailsScreen({
+    super.key,
+    required this.game,
+    required this.gametype,
+    required this.teamname,
+    required ValueNotifier teamnavatar,
+  });
 
   ValueNotifier<TextEditingController> datecontroller =
       ValueNotifier(TextEditingController());
@@ -47,7 +52,7 @@ class MatchDetailsScreen extends StatelessWidget {
           child: Column(
             children: [
               const Padding(padding: EdgeInsets.only(top: 30)),
-              fieldtext('You Selected Spot'),
+              fieldtext('You Selected Sport'),
               sheight,
               SizedBox(
                 width: customsize.width,
@@ -156,7 +161,8 @@ class MatchDetailsScreen extends StatelessWidget {
           gametype: gametype,
           date: datecontroller.value.text.trim(),
           location: locationcontroller.text.trim(),
-          preground: pregroundcontroller.text.trim());
+          preground: pregroundcontroller.text.trim(),
+          teamavatar: teamnavatar);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text(
           'Match Hosting Success...',

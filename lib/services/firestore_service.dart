@@ -49,6 +49,10 @@ deleteuser() async {
   await store.collection('User').doc(auth.currentUser!.uid).delete();
 }
 
+signout() async {
+  await auth.signOut();
+}
+
 uploadprofile({required String? downimage, required File? image}) async {
   final postId = DateTime.now().millisecondsSinceEpoch.toString();
   Reference ref = storage
@@ -130,8 +134,9 @@ matchaddtofirestore({
   required String date,
   required String location,
   required String preground,
+  required teamavatar,
 }) async {
-  final uuid = Uuid().v4();
+  final uuid = const Uuid().v4();
   final Map<String, dynamic> matches = {
     'game': game,
     'gametype': gametype,
@@ -144,4 +149,36 @@ matchaddtofirestore({
   };
 
   store.collection('Matches').doc(uuid).set(matches);
+}
+
+tournamentdetailadd({
+  required String game,
+  required String teamname,
+  required String gametype,
+  required String date,
+  required String location,
+  required String preground,
+  required String agedemand,
+  required String slotcount,
+  required String starttime,
+  required String rules,
+  required teamavatar,
+}) async {
+  final uuid = const Uuid().v4();
+  final Map<String, dynamic> matches = {
+    'game': game,
+    'gametype': gametype,
+    'teamname': teamname,
+    'agedemand': agedemand,
+    'slotcount': slotcount,
+    'rules': rules,
+    'starttime': starttime,
+    'date': date,
+    'location': location,
+    'ground': preground,
+    'documentid': uuid,
+    'userid': auth.currentUser!.uid,
+  };
+
+  store.collection('Tournaments').doc(uuid).set(matches);
 }

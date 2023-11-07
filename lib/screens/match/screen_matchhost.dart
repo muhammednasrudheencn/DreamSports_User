@@ -15,6 +15,7 @@ class MatchHostingScreen extends StatelessWidget {
   ValueNotifier<String> gametype = ValueNotifier('');
   ValueNotifier<String> gamelvl = ValueNotifier('');
   ValueNotifier<String> teamname = ValueNotifier('');
+  ValueNotifier<dynamic> teamavatar1 = ValueNotifier('');
   ValueNotifier<int> one = ValueNotifier(0);
   @override
   Widget build(BuildContext context) {
@@ -154,6 +155,8 @@ class MatchHostingScreen extends StatelessWidget {
                                                           .docs[0]['avatar'];
                                                       teamname.value =
                                                           teamdata['teamname'];
+                                                      teamavatar1.value =
+                                                          teamavatar;
                                                       return teamavatar != null
                                                           ? CircleAvatar(
                                                               radius: 20,
@@ -177,7 +180,7 @@ class MatchHostingScreen extends StatelessWidget {
                                     ),
                                   );
                                 } else {
-                                  return Text("data");
+                                  return const Text("data");
                                 }
                               })),
                     ),
@@ -218,6 +221,7 @@ class MatchHostingScreen extends StatelessWidget {
                     game: gametype.value,
                     gametype: gamelvl.value,
                     teamname: teamname.value,
+                    teamnavatar: teamavatar1,
                   )));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

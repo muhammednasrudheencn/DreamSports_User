@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:dream_sports_user/constants/const_variable.dart';
@@ -186,7 +188,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (usernamecontroller.text.trim().isEmpty ||
         aboutcontroller.text.trim().isEmpty ||
         phonecontroller.text.trim().isEmpty ||
-        emailcontroller.text.trim().isEmpty) {
+        emailcontroller.text.trim().isEmpty ||
+        _image == null) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Registeration Failed Please Check Your Field',
             style: TextStyle(fontSize: 15)),

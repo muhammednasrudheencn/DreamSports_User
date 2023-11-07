@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:dream_sports_user/constants/const_variable.dart';
@@ -26,7 +28,7 @@ class _CeateTeamScreenState extends State<CeateTeamScreen> {
   Widget build(BuildContext context) {
     final mediaquery = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 248, 246, 246),
+      backgroundColor: const Color.fromARGB(255, 248, 246, 246),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(

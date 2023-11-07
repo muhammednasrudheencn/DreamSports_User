@@ -180,12 +180,20 @@ Widget infoitems() {
   );
 }
 
-Widget matches({var height, var width, String? text, var teamname}) {
+Widget matches(
+    {var height,
+    var width,
+    String? text,
+    var teamname,
+    var teamavatar,
+    var date,
+    var location}) {
   return Container(
     height: height,
     width: width,
     decoration: BoxDecoration(
-        border: Border.all(),
+        color: whiteback,
+        border: Border.all(color: const Color.fromARGB(255, 241, 240, 240)),
         borderRadius: const BorderRadius.all(Radius.circular(7))),
     child: Center(
       child: Padding(
@@ -196,19 +204,21 @@ Widget matches({var height, var width, String? text, var teamname}) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(teamname),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       radius: 35,
+                      backgroundImage: Image.network(teamavatar).image,
                     ),
                     swidth,
-                    Column(
+                    swidth,
+                    const Column(
                       children: [
                         Text(
                           'V/S',
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 10,
@@ -220,8 +230,46 @@ Widget matches({var height, var width, String? text, var teamname}) {
                       ],
                     ),
                     swidth,
+                    swidth,
                     CircleAvatar(
-                      radius: 35,
+                      radius: 36,
+                      backgroundColor: homecolor,
+                      child: CircleAvatar(
+                        radius: 35,
+                        backgroundColor: whiteback,
+                        child: IconButton(
+                            icon: const Icon(
+                              Icons.group_add_outlined,
+                              color: homecolor,
+                            ),
+                            onPressed: () {}),
+                      ),
+                    )
+                  ],
+                ),
+                sheight,
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.location_on_outlined,
+                          size: 15,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(location)
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.date_range,
+                          size: 15,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(date)
+                      ],
                     )
                   ],
                 )
@@ -232,7 +280,17 @@ Widget matches({var height, var width, String? text, var teamname}) {
   );
 }
 
-Widget tournement({var height, var width, String? text}) {
+Widget tournement(
+    {var height,
+    var width,
+    var teamname,
+    var teamavatar,
+    var date,
+    var age,
+    var slotcount,
+    var game,
+    var gametype,
+    var location}) {
   return Container(
     height: height,
     width: width,
@@ -241,31 +299,105 @@ Widget tournement({var height, var width, String? text}) {
         borderRadius: const BorderRadius.all(Radius.circular(7))),
     child: Center(
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Row(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      radius: 20,
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundImage: Image.network(teamavatar).image,
+                        ),
+                        swidth,
+                        Text(teamname),
+                      ],
                     ),
-                    swidth,
-                    Text('Team Name'),
+                    Text(date),
                   ],
                 ),
                 sheight,
-                fieldtext('Details'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    fieldtext('Details'),
+                    Row(
+                      children: [
+                        Text(
+                          game,
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          "($gametype)",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                 sheight,
-                const Text('Match Level  :  7s'),
-                const Text('   Location  :  Ramanattukara'),
-                const Text('Under 18 /n 16 Slots /n '),
-                const Text('Must Have Original Proof '),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Age",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        Text(
+                          "Slot Available",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        Text(
+                          "Location",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    swidth,
+                    const Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          ":",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        Text(
+                          ":",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        Text(":", style: TextStyle(fontSize: 15)),
+                      ],
+                    ),
+                    swidth,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          age,
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        Text(
+                          slotcount,
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        Text(location, style: const TextStyle(fontSize: 15)),
+                      ],
+                    ),
+                  ],
+                )
               ],
-            )),
-      ),
+            ),
+          )),
     ),
   );
 }
