@@ -4,6 +4,7 @@ import 'package:dream_sports_user/constants/const_variable.dart';
 import 'package:dream_sports_user/screens/class/remove_glow.dart';
 import 'package:dream_sports_user/screens/inner_screens/screen_create_team.dart';
 import 'package:dream_sports_user/screens/inner_screens/screen_settings.dart';
+import 'package:dream_sports_user/screens/privacypolicy/privacy_policy.dart';
 import 'package:dream_sports_user/screens/profile/const.dart';
 import 'package:dream_sports_user/services/firestore_service.dart';
 import 'package:dream_sports_user/widgets/free_widget.dart';
@@ -226,6 +227,13 @@ class ProfileScreen extends StatelessWidget {
                                         MaterialPageRoute(
                                             builder: (ctx) =>
                                                 const SettingsScreen()));
+                                  }
+                                  if (index == 2) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (ctx) =>
+                                                const PrivacyPolicy()));
                                   }
                                   if (index == 0) {
                                     showModalBottomSheet(
