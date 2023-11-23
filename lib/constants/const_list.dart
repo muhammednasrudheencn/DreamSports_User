@@ -33,6 +33,9 @@ List<Viewclass> viewclass = [
   //     prefixicon: const Icon(Icons.bookmark_added), childtext: 'My Booking'),
   // Viewclass(prefixicon: const Icon(Icons.favorite), childtext: 'My Favorite'),
   Viewclass(
+      prefixicon: const Icon(Icons.bookmark_outline_rounded),
+      childtext: 'My Booking'),
+  Viewclass(
       prefixicon: const Icon(Icons.support_agent), childtext: 'Help & Support'),
   Viewclass(prefixicon: const Icon(Icons.settings), childtext: 'Settings'),
   Viewclass(prefixicon: const Icon(Icons.info), childtext: 'Privacy Policy'),

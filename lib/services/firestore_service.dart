@@ -110,13 +110,17 @@ addteamintofirestore({
 bookslotdetails(
     {required String strttime,
     required String endtime,
+    required String turfname,
+    required String location,
     required bool isbooked,
     required String userid}) async {
   final Map<String, dynamic> slotbooking = {
     'strttime': strttime,
     'endtime': endtime,
     'isBooked': isbooked,
-    'slotid': auth.currentUser!.uid
+    'slotid': auth.currentUser!.uid,
+    'turfname': turfname,
+    'location': location
   };
 
   await store

@@ -42,7 +42,7 @@ class Razorpayresponse {
   makePayment() async {
     var options = {
       'key': 'rzp_test_jPoYIePmmi6T2r',
-      'amount': 20000,
+      'amount': 100000,
       'name': 'DREAM SPORTS',
       'description': 'BOOK YOUR TURF',
       'prefill': {

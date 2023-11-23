@@ -19,6 +19,8 @@ class BookingDetail extends StatefulWidget {
 
 ValueNotifier<String> strttime = ValueNotifier('');
 ValueNotifier<String> endtime = ValueNotifier('');
+ValueNotifier<String> turfname = ValueNotifier('');
+ValueNotifier<String> location = ValueNotifier('');
 String tdate = DateFormat("dd MMMM yyyy").format(DateTime.now());
 
 class _BookingDetailState extends State<BookingDetail> {
@@ -107,128 +109,149 @@ class _BookingDetailState extends State<BookingDetail> {
                                         color: whiteback,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10))),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: StreamBuilder(
-                                              stream: store
-                                                  .collection('TurfDetails')
-                                                  .doc(data['userid'])
-                                                  .collection('images')
-                                                  .snapshots(),
-                                              builder: (context, snapshot1) {
-                                                if (snapshot1.connectionState ==
-                                                    ConnectionState.waiting) {
-                                                  return const Center(
-                                                      child:
-                                                          CircularProgressIndicator());
-                                                }
-                                                if (!snapshot1.hasData) {
-                                                  return const Center(
-                                                      child:
-                                                          CircularProgressIndicator());
-                                                }
-                                                final banimg = snapshot1
-                                                    .data!.docs[0]['turfimage'];
-                                                return Column(
-                                                  children: [
-                                                    Container(
-                                                      width: mediaquery.width,
-                                                      height:
-                                                          mediaquery.height *
-                                                              0.2,
-                                                      decoration: BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image:
-                                                                  NetworkImage(
-                                                                      banimg),
-                                                              fit:
-                                                                  BoxFit.cover),
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                      .all(
-                                                                  Radius
-                                                                      .circular(
+                                    child: ValueListenableBuilder(
+                                      valueListenable: location,
+                                      builder: (context, value, child) {
+                                        return ValueListenableBuilder(
+                                          valueListenable: turfname,
+                                          builder: (context, value, child) {
+                                            return Column(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: StreamBuilder(
+                                                      stream: store
+                                                          .collection(
+                                                              'TurfDetails')
+                                                          .doc(data['userid'])
+                                                          .collection('images')
+                                                          .snapshots(),
+                                                      builder:
+                                                          (context, snapshot1) {
+                                                        if (snapshot1
+                                                                .connectionState ==
+                                                            ConnectionState
+                                                                .waiting) {
+                                                          return const Center(
+                                                              child:
+                                                                  CircularProgressIndicator());
+                                                        }
+                                                        if (!snapshot1
+                                                            .hasData) {
+                                                          return const Center(
+                                                              child:
+                                                                  CircularProgressIndicator());
+                                                        }
+                                                        final banimg = snapshot1
+                                                                .data!.docs[0]
+                                                            ['turfimage'];
+                                                        return Column(
+                                                          children: [
+                                                            Container(
+                                                              width: mediaquery
+                                                                  .width,
+                                                              height: mediaquery
+                                                                      .height *
+                                                                  0.2,
+                                                              decoration: BoxDecoration(
+                                                                  image: DecorationImage(
+                                                                      image: NetworkImage(
+                                                                          banimg),
+                                                                      fit: BoxFit
+                                                                          .cover),
+                                                                  borderRadius: const BorderRadius
+                                                                          .all(
+                                                                      Radius.circular(
                                                                           7))),
-                                                    ),
-                                                    sheight,
-                                                    sheight,
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(
-                                                          data['courtname'],
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontSize: 30,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      0),
-                                                        ),
-                                                        sheight,
-                                                        Text(
-                                                          data['location'],
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontSize: 18,
-                                                                  color: Color
-                                                                      .fromARGB(
+                                                            ),
+                                                            sheight,
+                                                            sheight,
+                                                            turfname.value =
+                                                                data[
+                                                                    'courtname'],
+                                                            location.value =
+                                                                data[
+                                                                    'location'],
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  data[
+                                                                      'courtname'],
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          30,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      letterSpacing:
+                                                                          0),
+                                                                ),
+                                                                sheight,
+                                                                Text(
+                                                                  data[
+                                                                      'location'],
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          18,
+                                                                      color: Color.fromARGB(
                                                                           255,
                                                                           83,
                                                                           83,
                                                                           83),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      1),
-                                                        ),
-                                                        Text(
-                                                          '+91 ${data['contactinfo']}',
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontSize: 18,
-                                                                  color: Color
-                                                                      .fromARGB(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      letterSpacing:
+                                                                          1),
+                                                                ),
+                                                                Text(
+                                                                  '+91 ${data['contactinfo']}',
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          18,
+                                                                      color: Color.fromARGB(
                                                                           255,
                                                                           83,
                                                                           83,
                                                                           83),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      1),
-                                                        ),
-                                                        Text(
-                                                          data['discription'],
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontSize: 18,
-                                                                  color: Color
-                                                                      .fromARGB(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      letterSpacing:
+                                                                          1),
+                                                                ),
+                                                                Text(
+                                                                  data[
+                                                                      'discription'],
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          18,
+                                                                      color: Color.fromARGB(
                                                                           255,
                                                                           83,
                                                                           83,
                                                                           83),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      1),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
-                                                );
-                                              }),
-                                        ),
-                                      ],
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      letterSpacing:
+                                                                          1),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        );
+                                                      }),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
                                     ),
                                   ),
                                   sheight,
@@ -1596,6 +1619,8 @@ class _BookingDetailState extends State<BookingDetail> {
       bookslotdetails(
           strttime: strttime.value,
           endtime: endtime.value,
+          turfname: turfname.value,
+          location: location.value,
           isbooked: true,
           userid: userid!);
       Navigator.push(
